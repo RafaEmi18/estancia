@@ -164,40 +164,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Exportar a Word (.doc)
-  exportWordBtn.addEventListener('click', () => {
-    // ocultar controles que no queremos en el documento
-    const controls = document.querySelectorAll('#exportPdfBtn, #exportWordBtn, #submitBtn, #addAccion, #removeLastAction, .btn-remove-action');
-    controls.forEach(c => c.style.display = 'none');
-
-    // Clonar y preparar HTML
-    const clone = sheetRoot.cloneNode(true);
-
-    // Inline estilos mínimas: tomamos el CSS actual del documento para impresión simple
-    const styles = Array.from(document.styleSheets)
-      .map(ss => {
-        try {
-          return Array.from(ss.cssRules || []).map(r => r.cssText).join('\n');
-        } catch (e) {
-          return '';
-        }
-      }).join('\n');
-
-    const header = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>Informe Trimestral</title><style>${styles}</style></head><body>`;
-    const footer = '</body></html>';
-    const html = header + clone.outerHTML + footer;
-
-    // Restaurar controles
-    controls.forEach(c => c.style.display = '');
-
-    // Crear blob y descargar como doc (Word abrirá HTML)
-    const blob = new Blob([html], { type: 'application/msword' });
-    const fileName = `Informe_Trimestral_${new Date().toISOString().slice(0,10)}.doc`;
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = fileName;
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
+  exportWordBtn.addEventListener('click', async () => {
+    const fileName = 'DP-RG.02 Informe Trimestral.docx';
+    try {
+      const res = await fetch(encodeURI(fileName), { method: 'HEAD' });
+      if (!res.ok) throw new Error('No encontrado');
+      const a = document.createElement('a');
+      a.href = encodeURI(fileName);
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    } catch (err) {
+      alert(`No se encontró "${fileName}". Asegúrese de que el archivo exista en la carpeta public.`);
+    }
   });
 
   // Exportar a PDF (html2canvas + jsPDF), con multi-page
