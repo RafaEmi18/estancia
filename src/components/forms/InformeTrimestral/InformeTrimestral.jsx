@@ -39,7 +39,7 @@ const InformeTrimestral = () => {
 
   // Función para actualizar datos de acciones
   const handleActionChange = (index, field, value) => {
-    setAcciones(prev => prev.map((accion, i) => 
+    setAcciones(prev => prev.map((accion, i) =>
       i === index ? { ...accion, [field]: value } : accion
     ));
   };
@@ -48,7 +48,7 @@ const InformeTrimestral = () => {
   const calculateCompliance = (prog, real) => {
     const progNum = parseFloat(prog) || 0;
     const realNum = parseFloat(real) || 0;
-    
+
     if (progNum > 0) {
       const pct = (realNum / progNum) * 100;
       return Math.min(pct, 100).toFixed(1);
@@ -72,7 +72,7 @@ const InformeTrimestral = () => {
       fechaReal: '',
       evidencia: ''
     };
-    
+
     setAcciones(prev => [...prev, newAction]);
     setActionCounter(prev => prev + 1);
   };
@@ -97,13 +97,13 @@ const InformeTrimestral = () => {
   const generatePDF = async () => {
     try {
       alert('Generando PDF... (Esta funcionalidad requiere librerías adicionales)');
-      
+
       const today = new Date();
       const dateStr = today.toISOString().split('T')[0];
       const fileName = `Informe_Trimestral_UPTap_${dateStr}.pdf`;
-      
+
       console.log(`PDF generado: ${fileName}`);
-      
+
     } catch (err) {
       console.error('Error al generar PDF:', err);
       alert('Error al generar el PDF: ' + err.message);
@@ -113,7 +113,7 @@ const InformeTrimestral = () => {
   // Enviar formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Validar trimestre
     if (!formData.trimestre) {
       alert('Por favor seleccione un trimestre');
@@ -123,17 +123,17 @@ const InformeTrimestral = () => {
     // Validar acciones
     for (let i = 0; i < acciones.length; i++) {
       const accion = acciones[i];
-      
+
       if (!accion.numAccion.trim()) {
         alert(`Por favor ingrese el número de acción para la acción #${i + 1}`);
         return;
       }
-      
+
       if (!accion.pat) {
         alert(`Por favor indique si la acción #${i + 1} está especificada en el PAT`);
         return;
       }
-      
+
       if (!accion.descActividades.trim()) {
         alert(`Por favor ingrese la descripción de actividades para la acción #${i + 1}`);
         return;
@@ -143,7 +143,7 @@ const InformeTrimestral = () => {
     try {
       alert('Informe enviado correctamente');
       console.log('Datos del formulario:', { formData, acciones });
-      
+
     } catch (error) {
       console.error('Error al enviar:', error);
       alert('Error al enviar el informe: ' + error.message);
@@ -151,7 +151,7 @@ const InformeTrimestral = () => {
   };
 
   return (
-    <div style={{ 
+    <div style={{
       fontFamily: "'Segoe UI', 'Roboto', sans-serif",
       lineHeight: 1.6,
       color: '#333',
@@ -506,9 +506,9 @@ const InformeTrimestral = () => {
       {/* Header */}
       <header className="modern-header">
         <div className="logo-container">
-          <img 
-            src="lince.png" 
-            alt="Logo UPTap" 
+          <img
+            src="/assets/images/lince.png"
+            alt="Logo UPTap"
             className="logo-img"
             onError={(e) => { e.target.style.display = 'none'; }}
           />
@@ -539,13 +539,13 @@ const InformeTrimestral = () => {
                 { value: '4', label: '4 (Oct-Dic)' }
               ].map(trimestre => (
                 <label key={trimestre.value} className="radio-option">
-                  <input 
-                    type="radio" 
-                    name="trimestre" 
+                  <input
+                    type="radio"
+                    name="trimestre"
                     value={trimestre.value}
                     checked={formData.trimestre === trimestre.value}
                     onChange={handleInputChange}
-                    required 
+                    required
                   />
                   <span className="radio-custom"></span>
                   <span>{trimestre.label}</span>
@@ -560,13 +560,13 @@ const InformeTrimestral = () => {
               <label htmlFor="areaTrabajo">
                 <i className="fas fa-building"></i> Área de Trabajo
               </label>
-              <input 
-                type="text" 
-                id="areaTrabajo" 
-                name="areaTrabajo" 
+              <input
+                type="text"
+                id="areaTrabajo"
+                name="areaTrabajo"
                 value={formData.areaTrabajo}
                 onChange={handleInputChange}
-                required 
+                required
                 placeholder="Ej. Dirección Académica"
               />
             </div>
@@ -574,23 +574,23 @@ const InformeTrimestral = () => {
               <label htmlFor="mesAno">
                 <i className="fas fa-calendar"></i> Mes y Año
               </label>
-              <input 
-                type="month" 
-                id="mesAno" 
-                name="mesAno" 
+              <input
+                type="month"
+                id="mesAno"
+                name="mesAno"
                 value={formData.mesAno}
                 onChange={handleInputChange}
-                required 
+                required
               />
             </div>
             <div className="input-group">
               <label htmlFor="pide">
                 <i className="fas fa-certificate"></i> PIDE
               </label>
-              <input 
-                type="text" 
-                id="pide" 
-                name="pide" 
+              <input
+                type="text"
+                id="pide"
+                name="pide"
                 value={formData.pide}
                 onChange={handleInputChange}
                 placeholder="Código PIDE"
@@ -600,10 +600,10 @@ const InformeTrimestral = () => {
               <label htmlFor="cacei">
                 <i className="fas fa-certificate"></i> CACEI
               </label>
-              <input 
-                type="text" 
-                id="cacei" 
-                name="cacei" 
+              <input
+                type="text"
+                id="cacei"
+                name="cacei"
                 value={formData.cacei}
                 onChange={handleInputChange}
                 placeholder="Código CACEI"
@@ -619,24 +619,24 @@ const InformeTrimestral = () => {
                   <h3>
                     <i className="fas fa-tasks"></i> Acción #{index + 1}
                   </h3>
-                  <button 
-                    type="button" 
-                    className="remove-action-btn" 
+                  <button
+                    type="button"
+                    className="remove-action-btn"
                     title="Eliminar acción"
                     onClick={() => removeAction(index)}
                   >
                     <i className="fas fa-trash-alt"></i>
                   </button>
                 </div>
-                
+
                 <div className="grid-section">
                   <div className="input-group">
                     <label>Número de Acción</label>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       value={accion.numAccion}
                       onChange={(e) => handleActionChange(index, 'numAccion', e.target.value)}
-                      required 
+                      required
                       placeholder="Ej. ACC-001"
                     />
                   </div>
@@ -644,21 +644,21 @@ const InformeTrimestral = () => {
                     <label>Especificada en el PAT</label>
                     <div className="radio-group horizontal">
                       <label className="radio-option">
-                        <input 
-                          type="radio" 
-                          name={`pat_${index}`} 
+                        <input
+                          type="radio"
+                          name={`pat_${index}`}
                           value="SI"
                           checked={accion.pat === 'SI'}
                           onChange={(e) => handleActionChange(index, 'pat', e.target.value)}
-                          required 
+                          required
                         />
                         <span className="radio-custom"></span>
                         <span>SI</span>
                       </label>
                       <label className="radio-option">
-                        <input 
-                          type="radio" 
-                          name={`pat_${index}`} 
+                        <input
+                          type="radio"
+                          name={`pat_${index}`}
                           value="NO"
                           checked={accion.pat === 'NO'}
                           onChange={(e) => handleActionChange(index, 'pat', e.target.value)}
@@ -672,11 +672,11 @@ const InformeTrimestral = () => {
 
                 <div className="input-group">
                   <label>Descripción de Actividades Desarrolladas</label>
-                  <textarea 
+                  <textarea
                     value={accion.descActividades}
                     onChange={(e) => handleActionChange(index, 'descActividades', e.target.value)}
-                    rows="4" 
-                    required 
+                    rows="4"
+                    required
                     placeholder="Describa las actividades realizadas..."
                   ></textarea>
                 </div>
@@ -694,44 +694,44 @@ const InformeTrimestral = () => {
                     <tbody>
                       <tr>
                         <td>
-                          <input 
-                            type="number" 
+                          <input
+                            type="number"
                             value={accion.prog}
                             onChange={(e) => {
                               handleActionChange(index, 'prog', e.target.value);
                               const newCumplim = calculateCompliance(e.target.value, accion.real);
                               handleActionChange(index, 'cumplim', newCumplim);
                             }}
-                            min="0" 
-                            step="0.01" 
+                            min="0"
+                            step="0.01"
                           />
                         </td>
                         <td>
-                          <input 
-                            type="number" 
+                          <input
+                            type="number"
                             value={accion.real}
                             onChange={(e) => {
                               handleActionChange(index, 'real', e.target.value);
                               const newCumplim = calculateCompliance(accion.prog, e.target.value);
                               handleActionChange(index, 'cumplim', newCumplim);
                             }}
-                            min="0" 
-                            step="0.01" 
+                            min="0"
+                            step="0.01"
                           />
                         </td>
                         <td>
-                          <input 
-                            type="text" 
+                          <input
+                            type="text"
                             value={accion.cumplim}
-                            readOnly 
-                            className="result-input" 
+                            readOnly
+                            className="result-input"
                           />
                         </td>
                         <td>
-                          <textarea 
+                          <textarea
                             value={accion.justif}
                             onChange={(e) => handleActionChange(index, 'justif', e.target.value)}
-                            rows="2" 
+                            rows="2"
                             placeholder="Explique si aplica"
                           ></textarea>
                         </td>
@@ -743,10 +743,10 @@ const InformeTrimestral = () => {
                 <div className="grid-section">
                   <div className="input-group">
                     <label>Impacto de la actividad</label>
-                    <textarea 
+                    <textarea
                       value={accion.impacto}
                       onChange={(e) => handleActionChange(index, 'impacto', e.target.value)}
-                      rows="3" 
+                      rows="3"
                       placeholder="Describa el impacto generado"
                     ></textarea>
                   </div>
@@ -754,21 +754,21 @@ const InformeTrimestral = () => {
                     <label>Destacar para informe de Gobierno</label>
                     <div className="radio-group horizontal">
                       <label className="radio-option">
-                        <input 
-                          type="radio" 
-                          name={`gov_${index}`} 
+                        <input
+                          type="radio"
+                          name={`gov_${index}`}
                           value="SI"
                           checked={accion.gov === 'SI'}
                           onChange={(e) => handleActionChange(index, 'gov', e.target.value)}
-                          required 
+                          required
                         />
                         <span className="radio-custom"></span>
                         <span>SI</span>
                       </label>
                       <label className="radio-option">
-                        <input 
-                          type="radio" 
-                          name={`gov_${index}`} 
+                        <input
+                          type="radio"
+                          name={`gov_${index}`}
                           value="NO"
                           checked={accion.gov === 'NO'}
                           onChange={(e) => handleActionChange(index, 'gov', e.target.value)}
@@ -783,8 +783,8 @@ const InformeTrimestral = () => {
                 <div className="grid-section">
                   <div className="input-group">
                     <label>Fecha de Realización</label>
-                    <input 
-                      type="date" 
+                    <input
+                      type="date"
                       value={accion.fechaReal}
                       onChange={(e) => handleActionChange(index, 'fechaReal', e.target.value)}
                     />
@@ -792,15 +792,15 @@ const InformeTrimestral = () => {
                   <div className="input-group">
                     <label>Evidencia fotográfica (enlace Drive)</label>
                     <div style={{ position: 'relative' }}>
-                      <i className="fas fa-link" style={{ 
-                        position: 'absolute', 
-                        left: '12px', 
-                        top: '50%', 
+                      <i className="fas fa-link" style={{
+                        position: 'absolute',
+                        left: '12px',
+                        top: '50%',
                         transform: 'translateY(-50%)',
-                        color: 'var(--gray-color)' 
+                        color: 'var(--gray-color)'
                       }}></i>
-                      <input 
-                        type="url" 
+                      <input
+                        type="url"
                         value={accion.evidencia}
                         onChange={(e) => handleActionChange(index, 'evidencia', e.target.value)}
                         placeholder="https://drive.google.com/..."
@@ -817,10 +817,10 @@ const InformeTrimestral = () => {
             <button type="button" onClick={addAction} className="btn-add">
               <i className="fas fa-plus-circle"></i> Agregar Acción
             </button>
-            <button 
-              type="button" 
-              onClick={removeLastAction} 
-              className="btn-remove" 
+            <button
+              type="button"
+              onClick={removeLastAction}
+              className="btn-remove"
               disabled={acciones.length <= 1}
             >
               <i className="fas fa-minus-circle"></i> Deshacer Acción
@@ -834,10 +834,10 @@ const InformeTrimestral = () => {
                 <label htmlFor="elaboro">
                   <i className="fas fa-user-edit"></i> Elaboró
                 </label>
-                <input 
-                  type="text" 
-                  id="elaboro" 
-                  name="elaboro" 
+                <input
+                  type="text"
+                  id="elaboro"
+                  name="elaboro"
                   value={formData.elaboro}
                   onChange={handleInputChange}
                   placeholder="Nombre completo"
@@ -847,10 +847,10 @@ const InformeTrimestral = () => {
                 <label htmlFor="fechaElab">
                   <i className="fas fa-calendar-day"></i> Fecha de elaboración
                 </label>
-                <input 
-                  type="date" 
-                  id="fechaElab" 
-                  name="fechaElab" 
+                <input
+                  type="date"
+                  id="fechaElab"
+                  name="fechaElab"
                   value={formData.fechaElab}
                   onChange={handleInputChange}
                 />
@@ -859,10 +859,10 @@ const InformeTrimestral = () => {
                 <label htmlFor="vobo">
                   <i className="fas fa-stamp"></i> Vo.Bo.
                 </label>
-                <input 
-                  type="text" 
-                  id="vobo" 
-                  name="vobo" 
+                <input
+                  type="text"
+                  id="vobo"
+                  name="vobo"
                   value={formData.vobo}
                   onChange={handleInputChange}
                   placeholder="Nombre y cargo"
@@ -872,10 +872,10 @@ const InformeTrimestral = () => {
                 <label htmlFor="fechaRec">
                   <i className="fas fa-calendar-check"></i> Fecha de recepción
                 </label>
-                <input 
-                  type="date" 
-                  id="fechaRec" 
-                  name="fechaRec" 
+                <input
+                  type="date"
+                  id="fechaRec"
+                  name="fechaRec"
                   value={formData.fechaRec}
                   onChange={handleInputChange}
                 />

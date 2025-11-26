@@ -1,24 +1,24 @@
 
 const Dashboard = () => {
   return (
-    <div style={{ 
-      width: '100%', 
-      height: '100%', 
-      display: 'flex', 
+    <div style={{
+      width: '100%',
+      height: '100%',
+      display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
       textAlign: 'center',
       padding: '2rem'
     }}>
-      
+
       {/* Logo más grande */}
-      <img 
-        src="/lince.png" 
-        alt="Logo Universidad Politécnica de Tapachula" 
-        style={{ 
+      <img
+        src="/assets/images/lince.png"
+        alt="Logo Universidad Politécnica de Tapachula"
+        style={{
           width: '220px', // Aumentado de 150px a 220px
-          height: 'auto', 
+          height: 'auto',
           marginBottom: '2.5rem',
           filter: 'drop-shadow(0 6px 12px rgba(0,0,0,0.15))'
         }}
@@ -28,8 +28,8 @@ const Dashboard = () => {
       />
 
       {/* Título Principal */}
-      <h1 style={{ 
-        color: '#2c5282', 
+      <h1 style={{
+        color: '#2c5282',
         fontSize: '3rem', // Un poco más grande
         marginBottom: '1.5rem',
         fontWeight: '700',
@@ -39,8 +39,8 @@ const Dashboard = () => {
       </h1>
 
       {/* Mensaje de Bienvenida */}
-      <p style={{ 
-        color: '#4a5568', 
+      <p style={{
+        color: '#4a5568',
         fontSize: '1.5rem', // Un poco más grande
         marginBottom: '2.5rem',
         lineHeight: '1.6',
@@ -59,8 +59,8 @@ const Dashboard = () => {
         marginTop: '2.5rem',
         boxShadow: '0 8px 25px rgba(0, 0, 0, 0.1)'
       }}>
-        <p style={{ 
-          color: '#4a5568', 
+        <p style={{
+          color: '#4a5568',
           fontSize: '1.3rem',
           lineHeight: '1.6',
           margin: 0,
@@ -71,10 +71,10 @@ const Dashboard = () => {
       </div>
 
       {/* Footer Fijo en la parte inferior */}
-      <footer style={{ 
+      <footer style={{
         position: 'absolute',
         bottom: '2rem',
-        color: '#718096', 
+        color: '#718096',
         fontSize: '1rem',
         textAlign: 'center',
         width: '100%'

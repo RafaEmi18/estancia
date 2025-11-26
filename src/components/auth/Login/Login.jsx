@@ -30,9 +30,9 @@ const Login = ({ onLoginSuccess }) => {
   // Manejar envío del formulario
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     let isValid = true;
-    
+
     // Validar usuario
     if (username.trim() === '') {
       setUsernameError(true);
@@ -40,7 +40,7 @@ const Login = ({ onLoginSuccess }) => {
     } else {
       setUsernameError(false);
     }
-    
+
     // Validar contraseña
     if (password.length < 8) {
       setPasswordError(true);
@@ -48,7 +48,7 @@ const Login = ({ onLoginSuccess }) => {
     } else {
       setPasswordError(false);
     }
-    
+
     // Validar CAPTCHA
     if (captchaInput !== captchaCode) {
       setCaptchaError(true);
@@ -58,7 +58,7 @@ const Login = ({ onLoginSuccess }) => {
     } else {
       setCaptchaError(false);
     }
-    
+
     // Si es válido, proceder con login
     if (isValid) {
       setLoginSuccess(true);
@@ -87,7 +87,7 @@ const Login = ({ onLoginSuccess }) => {
     <div className="login-container">
       <div className="login-left-panel">
         <div className="login-logo">
-          <img src="/LogoUPTap.png" alt="Logo UPTap" className="login-logo-image" />
+          <img src="/assets/images/LogoUPTap.png" alt="Logo UPTap" className="login-logo-image" />
         </div>
         <h2>Sistema de Gestión para Organizaciones Educativas</h2>
         <p>Accede al panel de administración para gestionar toda la información de su organización de manera segura y eficiente.</p>
@@ -98,20 +98,20 @@ const Login = ({ onLoginSuccess }) => {
           <li><i className="fas fa-check-circle"></i> Visualizar métricas en tiempo real</li>
         </ul>
       </div>
-      
+
       <div className="login-right-panel">
         <h2>Iniciar Sesión</h2>
-        
+
         <div className={`login-success-message ${loginSuccess ? 'login-show-success' : ''}`}>
           <i className="fas fa-check-circle"></i> ¡Credenciales válidas! Redirigiendo al sistema...
         </div>
-        
+
         <form onSubmit={handleSubmit}>
           <div className="login-input-group">
             <label htmlFor="username">Usuario</label>
-            <input 
-              type="text" 
-              id="username" 
+            <input
+              type="text"
+              id="username"
               placeholder="Ingrese su nombre de usuario"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -120,19 +120,19 @@ const Login = ({ onLoginSuccess }) => {
               Por favor ingrese un usuario válido
             </div>
           </div>
-          
+
           <div className="login-input-group password-input-group">
             <label htmlFor="password">Contraseña</label>
             <div className="password-input-container">
-              <input 
+              <input
                 type={showPassword ? "text" : "password"}
-                id="password" 
+                id="password"
                 placeholder="Ingrese su contraseña"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <button 
-                type="button" 
+              <button
+                type="button"
                 className="password-toggle-btn"
                 onClick={togglePasswordVisibility}
               >
@@ -143,16 +143,16 @@ const Login = ({ onLoginSuccess }) => {
               La contraseña debe tener al menos 8 caracteres
             </div>
           </div>
-          
+
           <div className="login-captcha-container">
             <label>Verificación de Seguridad</label>
             <div className="login-captcha-code">
               {captchaCode}
             </div>
             <div className="login-input-group">
-              <input 
-                type="text" 
-                id="captcha-input" 
+              <input
+                type="text"
+                id="captcha-input"
                 placeholder="Ingrese el código mostrado"
                 value={captchaInput}
                 onChange={(e) => setCaptchaInput(e.target.value)}
@@ -167,12 +167,12 @@ const Login = ({ onLoginSuccess }) => {
               </button>
             </div>
           </div>
-          
+
           <button type="submit" className="login-btn">
             Acceder al Sistema
           </button>
         </form>
-        
+
         <div className="login-footer">
           ¿Problemas para acceder? Contacte al <a href="/contact" aria-label="Contactar al administrador del sistema">administrador del sistema</a>
         </div>

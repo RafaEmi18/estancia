@@ -1,20 +1,17 @@
 import { useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 const UniversityLayout = ({ onLogout }) => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', 'light');
   }, []);
 
-  // Función para redirigir completamente a páginas HTML
-  const redirectToHTML = (fileName) => {
-    window.location.href = `/${fileName}.html`;
-  };
-
   return (
     <div className="university-layout-fullscreen">
-      
-<style jsx>{`
+
+      <style jsx>{`
   .university-layout-fullscreen {
     width: 100vw;
     height: 100vh;
@@ -194,13 +191,13 @@ const UniversityLayout = ({ onLogout }) => {
           <div className="header-section-fullscreen">
             <h1 className="university-title-fullscreen">Universidad Politécnica de Tapachula</h1>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
-              <button 
+              <button
                 className="documents-button-fullscreen"
-                onClick={() => {}}
+                onClick={() => { }}
               >
                 <i className="fas fa-file-alt"></i> Documentos
               </button>
-              <button 
+              <button
                 className="documents-button-fullscreen"
                 onClick={onLogout}
                 style={{ background: '#e53e3e' }}
@@ -216,47 +213,47 @@ const UniversityLayout = ({ onLogout }) => {
             <ul className="nav-list-fullscreen">
               <li className="section-header-fullscreen">Procedimiento</li>
               <li>
-                <button 
+                <button
                   className="nav-link-fullscreen"
-                  onClick={() => redirectToHTML('gestion-fondos')}
+                  onClick={() => { }} // TODO: Implementar ruta cuando exista
                 >
                   <i className="fas fa-money-bill-wave" style={{ marginRight: '10px' }}></i>
                   DP-PI.01 Gestión de Fondos
                 </button>
               </li>
               <li>
-                <button 
+                <button
                   className="nav-link-fullscreen"
-                  onClick={() => redirectToHTML('gestion-informacion')}
+                  onClick={() => { }} // TODO: Implementar ruta cuando exista
                 >
                   <i className="fas fa-database" style={{ marginRight: '10px' }}></i>
                   DP-PI.02 Gestión de Información
                 </button>
               </li>
-              
+
               <li className="section-header-fullscreen">Registros</li>
               <li>
-                <button 
+                <button
                   className="nav-link-fullscreen"
-                  onClick={() => redirectToHTML('programa-anual-de-trabajo')}
+                  onClick={() => navigate('/pat-formulario')}
                 >
                   <i className="fas fa-calendar-alt" style={{ marginRight: '10px' }}></i>
                   DP-RG.01 Programa Anual de Trabajo
                 </button>
               </li>
               <li>
-                <button 
+                <button
                   className="nav-link-fullscreen"
-                  onClick={() => redirectToHTML('informe-trimestral')}
+                  onClick={() => navigate('/informe-trimestral')}
                 >
                   <i className="fas fa-chart-bar" style={{ marginRight: '10px' }}></i>
                   DP-RG.02 Informe Trimestral
                 </button>
               </li>
               <li>
-                <button 
+                <button
                   className="nav-link-fullscreen"
-                  onClick={() => redirectToHTML('planeacion-cuatrimestral')}
+                  onClick={() => navigate('/planeacion-cuatri')}
                 >
                   <i className="fas fa-tasks" style={{ marginRight: '10px' }}></i>
                   DP-RG.03 Planeación Cuatrimestral

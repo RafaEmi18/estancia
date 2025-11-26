@@ -1,9 +1,10 @@
-import { Route, Routes } from 'react-router-dom';
-import InformeTrimestral from './components/InformeTrimestral/InformeTrimestral';
-import PATForm from './components/PATForm/PATForm';
-import PlaneacionCuatri from './components/PlaneacionCuatri/PlaneacionCuatri';
-import Dashboard from './Dashboard'; // ← Corregido: Dashboard, no UniversityOashboard
-import UniversityLayout from './UniversityLayout';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import UniversityLayout from '../components/layout/UniversityLayout';
+import Dashboard from '../components/dashboard/Dashboard';
+import InformeTrimestral from '../components/forms/InformeTrimestral/InformeTrimestral';
+import PATForm from '../components/forms/PATForm/PATForm';
+import PlaneacionCuatri from '../components/forms/PlaneacionCuatri/PlaneacionCuatri';
 
 const UniversityRoutes = ({ onLogout }) => {
   return (

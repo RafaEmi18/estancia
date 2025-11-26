@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import Login from './components/auth/Login/Login';
+import AppRoutes from './routes/AppRoutes';
 import './App.css';
-import AppRoutes from './AppRoutes';
-import Login from './components/Login/Login';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Verificar si ya hay una sesión activa al cargar la aplicación
   useEffect(() => {
     const checkAuthStatus = () => {
       const token = localStorage.getItem('authToken');
